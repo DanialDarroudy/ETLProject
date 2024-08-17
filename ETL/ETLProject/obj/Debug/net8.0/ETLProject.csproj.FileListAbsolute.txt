@@ -1,0 +1,6 @@
+C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProject\obj\Debug\net8.0\ETLProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProject\obj\Debug\net8.0\ETLProject.AssemblyInfoInputs.cache
+C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProject\obj\Debug\net8.0\ETLProject.AssemblyInfo.cs
+C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProject\obj\Debug\net8.0\ETLProject.csproj.CoreCompileInputs.cache
+C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProject\obj\Debug\net8.0\ETLProject.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProject\obj\Debug\net8.0\ETLProject.sourcelink.json

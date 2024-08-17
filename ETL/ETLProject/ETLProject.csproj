@@ -8,8 +8,9 @@
 
     <ItemGroup>
       <Folder Include="Controller\" />
-      <Folder Include="Repository\" />
-      <Folder Include="Service\" />
+      <Folder Include="Extract\" />
+      <Folder Include="Load\" />
+      <Folder Include="Transform\Condition\Strategy\" />
     </ItemGroup>
 
 </Project>
