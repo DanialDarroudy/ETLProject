@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace ETLProject.Transform.Aggregation;
+namespace ETLProject.Transform.Aggregation.Strategy;
 
 public interface IAggregateStrategy
 {

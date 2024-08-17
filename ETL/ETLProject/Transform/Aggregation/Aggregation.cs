@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using ETLProject.Transform.Aggregation.Strategy;
 
 namespace ETLProject.Transform.Aggregation;
 
@@ -9,14 +10,13 @@ public abstract class Aggregation(List<DataColumn> groupedBys, DataColumn aggreg
     {
         CheckNull(table);
         CheckEmpty(table);
-        var resultTable = InitializeResultTable();
+        var resultTable = TableInitializer.InitializeTable(groupedBys , aggregated);
         var groupedRows = GroupByColumns(table);
         foreach (var (groupKey, rowsInGroup) in groupedRows)
         {
             var newRow = resultTable.NewRow();
             PopulateRowWithGroupValues(newRow, groupKey);
-            var aggregateResult = strategy.DoSpecificAggregate(rowsInGroup , aggregated);
-            newRow[groupedBys.Count] = aggregateResult;
+            newRow[groupedBys.Count] = strategy.DoSpecificAggregate(rowsInGroup , aggregated);
             resultTable.Rows.Add(newRow);
         }
 
@@ -34,19 +34,6 @@ public abstract class Aggregation(List<DataColumn> groupedBys, DataColumn aggreg
         {
             throw new ArgumentException("The input DataTable cannot be empty.");
         }
-    }
-
-    private DataTable InitializeResultTable()
-    {
-        var resultTable = new DataTable();
-
-        foreach (var column in groupedBys)
-        {
-            resultTable.Columns.Add(column.ColumnName, column.DataType);
-        }
-
-        resultTable.Columns.Add(aggregated.ColumnName, aggregated.DataType);
-        return resultTable;
     }
 
     private Dictionary<string, List<DataRow>> GroupByColumns(DataTable table)

@@ -1,8 +1,8 @@
 ﻿using System.Data;
 
-namespace ETLProject.Transform.Aggregation;
+namespace ETLProject.Transform.Aggregation.Strategy;
 
-public class MaxStrategy
+public class MaxStrategy : IAggregateStrategy
 {
     public decimal DoSpecificAggregate(List<DataRow> rowsInGroup , DataColumn aggregated)
     {
