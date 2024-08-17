@@ -3,7 +3,7 @@ using ETLProject.Transform.Aggregation.AggregateStrategy;
 
 namespace ETLProject.Transform.Aggregation;
 
-public abstract class Aggregation(DataTable table , List<DataColumn> groupedBys, DataColumn aggregated , IAggregateStrategy strategy)
+public class Aggregation(DataTable table , List<DataColumn> groupedBys, DataColumn aggregated , IAggregateStrategy strategy)
 {
 
     public DataTable Aggregate()

@@ -1,4 +1,4 @@
-﻿namespace ETLProject.Transform.Condition.Composite;
+﻿namespace ETLProject.Transform.Condition;
 
 public static class SplitCondition
 {
