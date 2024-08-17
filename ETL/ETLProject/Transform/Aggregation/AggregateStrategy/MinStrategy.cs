@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace ETLProject.Transform.Aggregation.Strategy;
+namespace ETLProject.Transform.Aggregation.AggregateStrategy;
 
 public class MinStrategy : IAggregateStrategy
 {

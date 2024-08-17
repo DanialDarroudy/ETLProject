@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using ETLProject.Transform.Aggregation.Strategy;
+using ETLProject.Transform.Aggregation.AggregateStrategy;
 
 namespace ETLProject.Transform.Aggregation;
 
@@ -8,8 +8,8 @@ public abstract class Aggregation(DataTable table , List<DataColumn> groupedBys,
 
     public DataTable Aggregate()
     {
-        CheckNull();
-        CheckEmpty();
+        InitialCheck.CheckNull(table);
+        InitialCheck.CheckEmpty(table);
         var resultTable = TableInitializer.InitializeTable(groupedBys , aggregated);
         var groupedRows = GroupByColumns();
         foreach (var (groupKey, rowsInGroup) in groupedRows)
@@ -22,20 +22,6 @@ public abstract class Aggregation(DataTable table , List<DataColumn> groupedBys,
 
         return resultTable;
     }
-
-    private void CheckNull()
-    {
-        ArgumentNullException.ThrowIfNull(table);
-    }
-
-    private void CheckEmpty()
-    {
-        if (table.Rows.Count == 0)
-        {
-            throw new ArgumentException("The input DataTable cannot be empty.");
-        }
-    }
-
     private Dictionary<string, List<DataRow>> GroupByColumns()
     {
         var groupedRowsDict = new Dictionary<string, List<DataRow>>();

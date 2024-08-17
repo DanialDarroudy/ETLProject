@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace ETLProject.Transform.Condition.Composite.Strategy;
+namespace ETLProject.Transform.Condition.Composite.OperatorStrategy;
 
 public class OrStrategy : IOperatorStrategy
 {

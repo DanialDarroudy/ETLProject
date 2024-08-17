@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using ETLProject.Transform.Condition.Composite.Strategy;
+using ETLProject.Transform.Condition.Composite.OperatorStrategy;
 
 namespace ETLProject.Transform.Condition.Composite;
 
