@@ -1,6 +1,11 @@
-﻿namespace ETLProject.Transform.Condition.Composite;
+﻿using System.Data;
 
-public class LeafCondition : IComponentCondition
+namespace ETLProject.Transform.Condition.Composite;
+
+public class LeafCondition(DataTable table , string condition) : IComponentCondition
 {
-    
+    public List<DataRow> PerformFilter()
+    {
+        // TODO
+    }
 }

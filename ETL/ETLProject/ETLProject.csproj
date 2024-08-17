@@ -10,7 +10,22 @@
       <Folder Include="Controller\" />
       <Folder Include="Extract\" />
       <Folder Include="Load\" />
-      <Folder Include="Transform\Condition\Strategy\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Transform\Condition\Strategy\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Transform\Condition\Strategy\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Transform\Condition\Strategy\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Transform\Condition\Strategy\**" />
     </ItemGroup>
 
 </Project>

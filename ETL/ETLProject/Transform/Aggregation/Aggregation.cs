@@ -3,15 +3,15 @@ using ETLProject.Transform.Aggregation.Strategy;
 
 namespace ETLProject.Transform.Aggregation;
 
-public abstract class Aggregation(List<DataColumn> groupedBys, DataColumn aggregated , IAggregateStrategy strategy)
+public abstract class Aggregation(DataTable table , List<DataColumn> groupedBys, DataColumn aggregated , IAggregateStrategy strategy)
 {
 
-    public DataTable Aggregate(DataTable table)
+    public DataTable Aggregate()
     {
-        CheckNull(table);
-        CheckEmpty(table);
+        CheckNull();
+        CheckEmpty();
         var resultTable = TableInitializer.InitializeTable(groupedBys , aggregated);
-        var groupedRows = GroupByColumns(table);
+        var groupedRows = GroupByColumns();
         foreach (var (groupKey, rowsInGroup) in groupedRows)
         {
             var newRow = resultTable.NewRow();
@@ -23,12 +23,12 @@ public abstract class Aggregation(List<DataColumn> groupedBys, DataColumn aggreg
         return resultTable;
     }
 
-    private void CheckNull(DataTable table)
+    private void CheckNull()
     {
         ArgumentNullException.ThrowIfNull(table);
     }
 
-    private void CheckEmpty(DataTable table)
+    private void CheckEmpty()
     {
         if (table.Rows.Count == 0)
         {
@@ -36,7 +36,7 @@ public abstract class Aggregation(List<DataColumn> groupedBys, DataColumn aggreg
         }
     }
 
-    private Dictionary<string, List<DataRow>> GroupByColumns(DataTable table)
+    private Dictionary<string, List<DataRow>> GroupByColumns()
     {
         var groupedRowsDict = new Dictionary<string, List<DataRow>>();
 
