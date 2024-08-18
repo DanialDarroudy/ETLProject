@@ -1,29 +1,10 @@
-﻿using System.Data;
-using ETLProject.Transform.Aggregation.AggregateStrategy;
+﻿namespace ETLProject.Transform.Aggregation;
 
-namespace ETLProject.Transform.Aggregation;
-
-public class AggregationDTO
+public class AggregationDto(string tableName, List<string> groupedBysColumnNames
+    , string aggregatedColumnName, string strategyType)
 {
-    public string TableName { get; }
-    public List<string> GroupedBysColumnNames { get; }
-    public string AggregatedColumnName { get; }
-    public string StrategyType { get; }
-
-    public List<DataColumn> GetGroupedBysColumn(DataTable table)
-    {
-        InitialCheck.CheckHasColumnNames(table, GroupedBysColumnNames);
-        return GroupedBysColumnNames.Select(name => table.Columns[name]!).ToList();
-    }
-
-    public DataColumn GetAggregatedColumn(DataTable table)
-    {
-        InitialCheck.CheckHasColumnNames(table, [AggregatedColumnName]);
-        return table.Columns[AggregatedColumnName]!;
-    }
-
-    public IAggregateStrategy GetStrategy()
-    {
-        return AggregateStrategyFactory.CreateStrategy(StrategyType);
-    }
+    public string TableName { get; } = tableName;
+    public List<string> GroupedBysColumnNames { get; } = groupedBysColumnNames;
+    public string AggregatedColumnName { get; } = aggregatedColumnName;
+    public string StrategyType { get; } = strategyType;
 }

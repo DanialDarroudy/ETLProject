@@ -1,45 +1,51 @@
 ﻿using System.Data;
-using ETLProject.Extract;
 using ETLProject.Transform.Aggregation.AggregateStrategy;
 
 namespace ETLProject.Transform.Aggregation;
 
-public class Aggregation(string tableName , List<DataColumn> groupedBys, DataColumn aggregated , IAggregateStrategy strategy)
+public class Aggregation(AggregationDto dto)
 {
+    private DataTable _table = null!;
+    private List<DataColumn> _groupedBys = null!;
+    private DataColumn _aggregated = null!;
+    private IAggregateStrategy _strategy = null!;
 
-    public DataTable Aggregate()
+    public DataTable Aggregate(DataTable table)
     {
-        var table = DataBase.GetDataTable(tableName);
-        InitialCheck.CheckNull(table);
-        InitialCheck.CheckEmpty(table);
-        var resultTable = TableInitializer.InitializeTable(groupedBys , aggregated);
-        var groupedRows = GroupByColumns(table);
+        InitializeAggregationParameters(table);
+        InitialCheck.CheckNull(_table);
+        InitialCheck.CheckEmpty(_table);
+        
+        return GenerateAggregatedTable();
+    }
+    
+    private DataTable GenerateAggregatedTable()
+    {
+        var resultTable = TableInitializer.InitializeTable(_groupedBys , _aggregated);
+        var groupedRows = GroupByColumns();
         foreach (var (groupKey, rowsInGroup) in groupedRows)
         {
             var newRow = resultTable.NewRow();
             PopulateRowWithGroupValues(newRow, groupKey);
-            newRow[groupedBys.Count] = strategy.DoSpecificAggregate(rowsInGroup , aggregated);
+            newRow[_groupedBys.Count] = _strategy.DoSpecificAggregate(rowsInGroup , _aggregated);
             resultTable.Rows.Add(newRow);
         }
-
+        resultTable.TableName = dto.TableName;
         return resultTable;
     }
-    private Dictionary<string, List<DataRow>> GroupByColumns(DataTable table)
+    
+    private Dictionary<string, List<DataRow>> GroupByColumns()
     {
         var groupedRowsDict = new Dictionary<string, List<DataRow>>();
-
-        foreach (DataRow row in table.Rows)
+        foreach (DataRow row in _table.Rows)
         {
-            var groupKey = string.Join(",", groupedBys.Select(g => row[g].ToString()));
-
+            var groupKey = string.Join(",", _groupedBys.Select(column => row[column].ToString()));
             if (!groupedRowsDict.ContainsKey(groupKey))
             {
                 groupedRowsDict[groupKey] = [];
             }
-
             groupedRowsDict[groupKey].Add(row);
         }
-
         return groupedRowsDict;
     }
 
@@ -47,9 +53,17 @@ public class Aggregation(string tableName , List<DataColumn> groupedBys, DataCol
     {
         var groupValues = groupKey.Split(',');
 
-        for (var i = 0; i < groupedBys.Count; i++)
+        for (var i = 0; i < _groupedBys.Count; i++)
         {
             newRow[i] = groupValues[i];
         }
+    }
+    
+    private void InitializeAggregationParameters(DataTable table)
+    {
+        _table = table;
+        _groupedBys = ConvertStringToObject.GetGroupedBysColumn(_table, dto.GroupedBysColumnNames);
+        _aggregated = ConvertStringToObject.GetAggregatedColumn(_table, dto.AggregatedColumnName);
+        _strategy = ConvertStringToObject.GetAggregateStrategy(dto.StrategyType);
     }
 }

@@ -2,25 +2,16 @@
 
 namespace ETLProject.Transform.Condition.Composite;
 
-public class ComparisonStrategyFactory
+public static class ComparisonStrategyFactory
 {
-    public static IComparisonStrategy CreateStrategy(string type)
+    public static IComparisonStrategy CreateStrategy(char type)
     {
-        if (type.Equals("=", StringComparison.OrdinalIgnoreCase))
+        return type switch
         {
-            return new EqualStrategy();
-        }
-
-        if (type.Equals("<", StringComparison.OrdinalIgnoreCase))
-        {
-            return new LessThanStrategy();
-        }
-
-        if (type.Equals(">", StringComparison.OrdinalIgnoreCase))
-        {
-            return new MoreThanStrategy();
-        }
-
-        throw new ArgumentException($"Unknown Comparison strategy type: {type}");
+            '=' => new EqualStrategy(),
+            '<' => new LessThanStrategy(),
+            '>' => new MoreThanStrategy(),
+            _ => throw new ArgumentException($"Unknown Comparison strategy type: {type}")
+        };
     }
 }

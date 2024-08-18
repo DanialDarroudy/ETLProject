@@ -5,15 +5,15 @@ namespace ETLProject.Extract.DataConverterAdaptor;
 
 public class SqlDataConverter : IDataConverter
 {
-    private readonly string _queryForGetAllTableName =
+    private const string QueryForGetAllTableName = 
         "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'";
 
     public List<DataTable> ConvertToDataTables(string source)
     {
-        var connection = DataBase.ConvertSourceToConnectionString(source);
+        var connection = ConvertSourceToConnectionString(source);
         var npgsql = new NpgsqlConnection(connection);
         npgsql.Open();
-        var command = new NpgsqlCommand(_queryForGetAllTableName, npgsql);
+        var command = new NpgsqlCommand(QueryForGetAllTableName, npgsql);
         var reader = command.ExecuteReader();
         var tables = new List<DataTable>();
         while (reader.Read())
@@ -34,5 +34,13 @@ public class SqlDataConverter : IDataConverter
         adapter.Fill(dataTable);
         dataTable.TableName = tableName;
         return dataTable;
+    }
+    private string ConvertSourceToConnectionString(string source)
+    {
+        var server = source.Split(' ')[0];
+        var username = source.Split(' ')[1];
+        var password = source.Split(' ')[2];
+        var database = source.Split(' ')[3];
+        return $"Host={server};Username={username};Password={password};Database={database}";
     }
 }

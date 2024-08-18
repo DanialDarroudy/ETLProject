@@ -1,14 +1,12 @@
 ﻿using System.Data;
-using ETLProject.Extract;
 
 namespace ETLProject.Transform.Condition.Composite;
 
-public class LeafCondition(string tableName , string condition , string strategyType) : IComponentCondition
+public class LeafCondition(string condition) : IComponentCondition
 {
-    public List<DataRow> PerformFilter()
+    public List<DataRow> PerformFilter(DataTable table)
     {
-        var strategy = ComparisonStrategyFactory.CreateStrategy(strategyType);
-        var table = DataBase.GetDataTable(tableName);
+        var strategy = ConvertStringToObject.GetComparisonStrategy(condition);
         InitialCheck.CheckNull(table);
         InitialCheck.CheckEmpty(table);
         var columnName = SplitCondition.GetColumnName(condition);

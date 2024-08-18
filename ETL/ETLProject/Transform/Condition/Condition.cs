@@ -5,8 +5,8 @@ namespace ETLProject.Transform.Condition;
 
 public class Condition(IComponentCondition root)
 {
-    public DataTable ApplyCondition()
+    public DataTable ApplyCondition(DataTable table)
     {
-        return root.PerformFilter().CopyToDataTable();
+        return root.PerformFilter(table).CopyToDataTable();
     }
 }

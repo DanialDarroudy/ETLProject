@@ -4,5 +4,5 @@ namespace ETLProject.Transform.Condition.Composite;
 
 public interface IComponentCondition
 {
-    public List<DataRow> PerformFilter();
+    public List<DataRow> PerformFilter(DataTable table);
 }
