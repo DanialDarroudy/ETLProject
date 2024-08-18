@@ -1,27 +1,32 @@
-﻿using System.Data;
+﻿using ETLProject.Extract;
 using ETLProject.Transform.Aggregation;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace ETLProject.Control;
 
 public class AggregateController : Controller
 {
     [HttpPost]
-    public IActionResult Aggregation([FromBody] AggregationDTO dto)
+    public IActionResult Aggregation([FromBody] List<Tuple<string, string>> sources, [FromBody] AggregationDTO dto)
     {
-        var aggregationContext = new AggregationContext();
-        var connection = new NpgsqlConnection(aggregationDto.DatabaseConnection);
-        var groupByColumnsString = string.Join(", ", aggregationDto.GroupByColumns.Select(col => col));
+        var converters = sources.Select(tuple =>
+            DataConverterFactory.CreateConverter(tuple.Item1)).ToList();
 
-        SetAggregationStrategy(aggregationDto, aggregationContext);
-        connection.Open();
 
-        var command = aggregationContext.Execute(connection, aggregationDto.TableName, groupByColumnsString,
-            aggregationDto.AggregationColumn);
-        using var dataAdapter = new NpgsqlDataAdapter(command);
-        var resultTable = new DataTable(aggregationDto.TableName);
+        for (var i = 0; i < converters.Count; i++)
+        {
+            var tables = converters[i].ConvertToDataTables(sources[i].Item2);
+            foreach (var table in tables)
+            {
+                DataBase.DataTables.Add(table);
+            }
+        }
 
-        dataAdapter.Fill(resultTable);
+        var aggregatedTable = DataBase.GetDataTable(dto.TableName);
+        var resultTable = new Aggregation(dto.TableName, dto.GetGroupedBysColumn(aggregatedTable)
+            , dto.GetAggregatedColumn(aggregatedTable), dto.GetStrategy()).Aggregate();
+        resultTable.TableName = dto.TableName;
         return Ok(JsonConvert.SerializeObject(resultTable));
     }
 }

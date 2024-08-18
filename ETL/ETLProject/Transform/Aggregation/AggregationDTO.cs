@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using ETLProject.Extract;
 using ETLProject.Transform.Aggregation.AggregateStrategy;
 
 namespace ETLProject.Transform.Aggregation;
@@ -10,11 +9,6 @@ public class AggregationDTO
     public List<string> GroupedBysColumnNames { get; }
     public string AggregatedColumnName { get; }
     public string StrategyType { get; }
-
-    public string GetTableName()
-    {
-        return TableName;
-    }
 
     public List<DataColumn> GetGroupedBysColumn(DataTable table)
     {

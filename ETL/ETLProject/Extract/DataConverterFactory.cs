@@ -4,7 +4,7 @@ namespace ETLProject.Extract;
 
 public static class DataConverterFactory
 {
-    public static IDataConverter GetConverter(string type)
+    public static IDataConverter CreateConverter(string type)
     {
         if (type.Equals("CSV", StringComparison.OrdinalIgnoreCase))
         {

@@ -1,4 +1,7 @@
 ﻿using System.Data;
+using ETLProject.Extract;
+using ETLProject.Transform.Aggregation;
+using ETLProject.Transform.Condition;
 using ETLProject.Transform.Condition.Composite;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -9,16 +12,22 @@ namespace ETLProject.Control;
 public class ConditionController : Controller
 {
     [HttpPost]
-    public IActionResult Condition([FromBody] IComponentCondition root)
+    public IActionResult Condition([FromBody] List<Tuple<string, string>> sources, [FromBody] IComponentCondition root)
     {
-        var connection = new NpgsqlConnection(conditionDto.DatabaseConnection);
-        var condition = new Condition(conditionDto);
-        using var dataAdapter = new NpgsqlDataAdapter(ConvertDatabaseToDataTable(connection, conditionDto.TableName));
-        var resultTable = new DataTable(conditionDto.TableName);
-        dataAdapter.Fill(resultTable);
+        var converters = sources.Select(tuple =>
+            DataConverterFactory.CreateConverter(tuple.Item1)).ToList();
 
-        connection.Open();
-        resultTable = condition.ApplyCondition(resultTable);
+
+        for (var i = 0; i < converters.Count; i++)
+        {
+            var tables = converters[i].ConvertToDataTables(sources[i].Item2);
+            foreach (var table in tables)
+            {
+                DataBase.DataTables.Add(table);
+            }
+        }
+
+        var resultTable = new Condition(root);
         return Ok(JsonConvert.SerializeObject(resultTable));
     }
 }
