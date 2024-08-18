@@ -1,17 +1,19 @@
 ﻿using System.Data;
+using ETLProject.Extract;
 using ETLProject.Transform.Aggregation.AggregateStrategy;
 
 namespace ETLProject.Transform.Aggregation;
 
-public class Aggregation(DataTable table , List<DataColumn> groupedBys, DataColumn aggregated , IAggregateStrategy strategy)
+public class Aggregation(string tableName , List<DataColumn> groupedBys, DataColumn aggregated , IAggregateStrategy strategy)
 {
 
     public DataTable Aggregate()
     {
+        var table = DataBase.GetDataTable(tableName);
         InitialCheck.CheckNull(table);
         InitialCheck.CheckEmpty(table);
         var resultTable = TableInitializer.InitializeTable(groupedBys , aggregated);
-        var groupedRows = GroupByColumns();
+        var groupedRows = GroupByColumns(table);
         foreach (var (groupKey, rowsInGroup) in groupedRows)
         {
             var newRow = resultTable.NewRow();
@@ -22,7 +24,7 @@ public class Aggregation(DataTable table , List<DataColumn> groupedBys, DataColu
 
         return resultTable;
     }
-    private Dictionary<string, List<DataRow>> GroupByColumns()
+    private Dictionary<string, List<DataRow>> GroupByColumns(DataTable table)
     {
         var groupedRowsDict = new Dictionary<string, List<DataRow>>();
 
