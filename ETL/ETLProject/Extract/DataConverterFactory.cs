@@ -2,7 +2,7 @@
 
 namespace ETLProject.Extract;
 
-public class DataConverterFactory
+public static class DataConverterFactory
 {
     public static IDataConverter GetConverter(string type)
     {

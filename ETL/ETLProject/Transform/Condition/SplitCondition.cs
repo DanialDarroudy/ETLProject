@@ -11,10 +11,28 @@ public static class SplitCondition
             {
                 break;
             }
+
             result += character;
         }
+
         return result;
     }
+
+    public static char GetOperator(string condition)
+    {
+        var result = ' ';
+        for (var i = 0; i < condition.Length; i++)
+        {
+            if (condition[i].Equals(' '))
+            {
+                result = condition[i + 1];
+                break;
+            }
+        }
+
+        return result;
+    }
+
     public static string GetValue(string condition)
     {
         var result = "";
@@ -25,6 +43,7 @@ public static class SplitCondition
             {
                 result += character;
             }
+
             if (character.Equals(' '))
             {
                 isReached += 1;
