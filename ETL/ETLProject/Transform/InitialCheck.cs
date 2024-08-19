@@ -4,11 +4,12 @@ namespace ETLProject.Transform;
 
 public static class InitialCheck
 {
+    private const string NullTableError = "The input DataTable cannot be null.";
     public static void CheckNull(DataTable table)
     {
         if (table == null)
         {
-            throw new ArgumentException("The input DataTable cannot be null.");
+            throw new ArgumentException(NullTableError);
         }
     }
 
