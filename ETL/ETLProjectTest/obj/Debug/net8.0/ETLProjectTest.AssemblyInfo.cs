@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ETLProjectTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29a56991e5896b220886f2103a0d073ded6c51a0")]
 [assembly: System.Reflection.AssemblyProductAttribute("ETLProjectTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ETLProjectTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -39,7 +39,7 @@ public static class SplitCondition
         var isReached = 0;
         foreach (var character in condition)
         {
-            if (isReached == 2 && !character.Equals('\''))
+            if (isReached >= 2 && !character.Equals('\''))
             {
                 result += character;
             }

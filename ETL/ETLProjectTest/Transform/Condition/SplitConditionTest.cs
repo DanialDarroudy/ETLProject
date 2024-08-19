@@ -26,6 +26,9 @@ public class SplitConditionTest
     [InlineData('>', "Age > 25")]
     [InlineData('=', "FatherName = 'Ali'")]
     [InlineData('=', "MotherName = 'Zahra'")]
+    [InlineData('<', "Age < 25")]
+    [InlineData('!', "Age ! 25")]
+
     public void GetOperator_ShouldReturnOperator_WhenParameterIsCondition(char expected, string condition)
     {
         // Arrange
@@ -41,6 +44,8 @@ public class SplitConditionTest
     [InlineData("25", "Age > 25")]
     [InlineData("Ali", "FatherName = 'Ali'")]
     [InlineData("Zahra", "MotherName = 'Zahra'")]
+    [InlineData("Ali Reza", "FatherName = 'Ali Reza'")]
+    [InlineData("Math 3", "Course = 'Math 3'")]
     public void GetValue_ShouldReturnValue_WhenParameterIsCondition(string expected, string condition)
     {
         // Arrange
