@@ -43,9 +43,7 @@ public class InitialCheckTest
     {
         // Arrange
         var table = new DataTable();
-        var row = table.NewRow();
-        table.Merge(row.Table);
-        table.AcceptChanges();
+        table.Rows.Add(table.NewRow());
         // Act
         var action = () => InitialCheck.CheckEmpty(table);
         // Assert
