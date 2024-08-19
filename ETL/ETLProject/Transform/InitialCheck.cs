@@ -4,7 +4,16 @@ namespace ETLProject.Transform;
 
 public static class InitialCheck
 {
-    private const string NullTableError = "The input DataTable cannot be null.";
+    public const string NullTableError = "The input DataTable cannot be null.";
+    public const string EmptyTableError = "The input DataTable cannot be empty.";
+    public static string NotExistTableError(string tableName)
+    {
+        return $"Table {tableName} not found";
+    }
+    public static string NotExistColumnError(string columnName)
+    {
+        return $"Column '{columnName}' does not exist in the DataTable.";
+    }
     public static void CheckNull(DataTable table)
     {
         if (table == null)
@@ -17,7 +26,7 @@ public static class InitialCheck
     {
         if (table.Rows.Count == 0)
         {
-            throw new ArgumentException("The input DataTable cannot be empty.");
+            throw new ArgumentException(EmptyTableError);
         }
     }
 
@@ -25,7 +34,7 @@ public static class InitialCheck
     {
         if (!dataTables.Exists(table => table.TableName == tableName))
         {
-            throw new ArgumentException($"Table {tableName} not found");
+            throw new ArgumentException(NotExistTableError(tableName));
         }
     }
 
@@ -35,7 +44,7 @@ public static class InitialCheck
         {
             if (!table.Columns.Contains(columnName))
             {
-                throw new ArgumentException($"Column '{columnName}' does not exist in the DataTable.");
+                throw new ArgumentException(NotExistColumnError(columnName));
             }
         }
     }

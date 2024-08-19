@@ -14,7 +14,7 @@
         <PackageReference Include="FluentAssertions" Version="7.0.0-alpha.4" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0"/>
         <PackageReference Include="NSubstitute" Version="5.1.0" />
-        <PackageReference Include="xunit" Version="2.5.3"/>
+        <PackageReference Include="xunit" Version="2.9.0" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3"/>
     </ItemGroup>
 
@@ -24,10 +24,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ETLProject\ETLProject.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Pages\Home\" />
     </ItemGroup>
 
 </Project>

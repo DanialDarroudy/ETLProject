@@ -49,5 +49,3 @@ C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProject\obj\Debug\net8.0\ref
 C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProject\obj\Debug\net8.0\ETLProject.pdb
 C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProject\obj\Debug\net8.0\ETLProject.genruntimeconfig.cache
 C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProject\obj\Debug\net8.0\ref\ETLProject.dll
-C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProject\obj\Debug\net8.0\ETLProject.RazorAssemblyInfo.cache
-C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProject\obj\Debug\net8.0\ETLProject.RazorAssemblyInfo.cs

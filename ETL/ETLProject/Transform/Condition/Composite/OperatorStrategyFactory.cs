@@ -14,6 +14,10 @@ public static class OperatorStrategyFactory
         {
             return new OrStrategy();
         }
-        throw new ArgumentException($"Unknown Operator strategy type: {type}");
+        throw new ArgumentException(NotExistTypeError(type));
+    }
+    public static string NotExistTypeError(string type)
+    {
+        return $"Unknown Operator strategy type: {type}";
     }
 }

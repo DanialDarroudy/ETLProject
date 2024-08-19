@@ -60,7 +60,7 @@
             },
             "xunit": {
               "target": "Package",
-              "version": "[2.5.3, )"
+              "version": "[2.9.0, )"
             },
             "xunit.runner.visualstudio": {
               "target": "Package",

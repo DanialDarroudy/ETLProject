@@ -26,6 +26,11 @@ public static class AggregateStrategyFactory
         {
             return new CountStrategy();
         }
-        throw new ArgumentException($"Unknown aggregation strategy type: {type}");
+        throw new ArgumentException(NotExistTypeError(type));
+    }
+
+    public static string NotExistTypeError(string type)
+    {
+        return $"Unknown aggregation strategy type: {type}";
     }
 }

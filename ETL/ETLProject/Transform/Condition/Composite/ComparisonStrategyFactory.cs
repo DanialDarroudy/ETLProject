@@ -11,7 +11,11 @@ public static class ComparisonStrategyFactory
             '=' => new EqualStrategy(),
             '<' => new LessThanStrategy(),
             '>' => new MoreThanStrategy(),
-            _ => throw new ArgumentException($"Unknown Comparison strategy type: {type}")
+            _ => throw new ArgumentException(NotExistTypeError(type))
         };
+    }
+    public static string NotExistTypeError(char type)
+    {
+        return $"Unknown Comparison strategy type: {type}";
     }
 }

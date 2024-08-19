@@ -1,12 +1,33 @@
 ﻿using System.Data;
 using ETLProject.Transform;
 using FluentAssertions;
-using NSubstitute;
 
 namespace ETLProjectTest.Transform;
 
 public class InitialCheckTest
 {
+    [Fact]
+    public void NotExistTableError_ShouldReturnStringError_WhenCalled()
+    {
+        // Arrange
+        const string tableName = "Student";
+        const string expected = $"Table {tableName} not found";
+        // Act
+        var actual = InitialCheck.NotExistTableError(tableName);
+        // Assert
+        actual.Should().Be(expected);
+    }
+    [Fact]
+    public void NotExistColumnError_ShouldReturnStringError_WhenCalled()
+    {
+        // Arrange
+        const string columnName = "ID";
+        const string expected = $"Column '{columnName}' does not exist in the DataTable.";
+        // Act
+        var actual = InitialCheck.NotExistColumnError(columnName);
+        // Assert
+        actual.Should().Be(expected);
+    }
     [Fact]
     public void CheckNull_ShouldThrowArgumentException_WhenParameterIsNull()
     {
@@ -15,7 +36,7 @@ public class InitialCheckTest
         // Act
         var action = () => InitialCheck.CheckNull(table);
         // Assert
-        action.Should().Throw<ArgumentException>().WithMessage("The input DataTable cannot be null.");
+        action.Should().Throw<ArgumentException>().WithMessage(InitialCheck.NullTableError);
     }
     [Fact]
     public void CheckNull_ShouldNotThrowArgumentException_WhenParameterInitialized()
@@ -36,7 +57,7 @@ public class InitialCheckTest
         // Act
         var action = () => InitialCheck.CheckEmpty(table);
         // Assert
-        action.Should().Throw<ArgumentException>().WithMessage("The input DataTable cannot be empty.");
+        action.Should().Throw<ArgumentException>().WithMessage(InitialCheck.EmptyTableError);
     }
     [Fact]
     public void CheckEmpty_ShouldNotThrowArgumentException_WhenParameterHasRows()
@@ -48,5 +69,140 @@ public class InitialCheckTest
         var action = () => InitialCheck.CheckEmpty(table);
         // Assert
         action.Should().NotThrow<ArgumentException>();
+    }
+
+    [Theory]
+    [MemberData(nameof(TablesThatThrowArgumentException))]
+    public void CheckHasTableName_ShouldThrowArgumentException_WhenTableNameNotExistInTheTablesList(
+        List<DataTable> dataTables , string tableName)
+    {
+        // Arrange
+        
+        // Act
+        var action = () => InitialCheck.CheckHasTableName(dataTables , tableName);
+        // Assert
+        action.Should().Throw<ArgumentException>().WithMessage(
+            InitialCheck.NotExistTableError(tableName));
+    }
+
+    public static IEnumerable<object[]> TablesThatThrowArgumentException()
+    {
+        var firstTables = new List<DataTable>();
+        yield return [firstTables, "Teacher"];
+        
+        var secondTables = new List<DataTable>()
+        {
+            new("Bank"),
+            new("Customer"),
+            new("Employee")
+        };
+        yield return [secondTables, "Client"];
+        yield return [secondTables, "Pilot"];
+        yield return [secondTables, "AirPort"];
+    }
+    [Theory]
+    [MemberData(nameof(TablesThatNotThrowArgumentException))]
+    public void CheckHasTableName_ShouldNotThrowArgumentException_WhenTableNameExistInTheTablesList(
+        List<DataTable> dataTables , string tableName)
+    {
+        // Arrange
+        
+        // Act
+        var action = () => InitialCheck.CheckHasTableName(dataTables , tableName);
+        // Assert
+        action.Should().NotThrow<ArgumentException>();
+    }
+    public static IEnumerable<object[]> TablesThatNotThrowArgumentException()
+    {
+        var firstTables = new List<DataTable>()
+        {
+            new(),
+        };
+        yield return [firstTables, ""];
+        
+        var secondTables = new List<DataTable>()
+        {
+            new("Bank"),
+            new("Customer"),
+            new("Employee")
+        };
+        yield return [secondTables, "Customer"];
+        yield return [secondTables, "Employee"];
+    }
+
+    [Theory]
+    [MemberData(nameof(ColumnsThatThrowArgumentException))]
+    public void CheckHasColumnNames_ShouldThrowArgumentException_WhenExistColumnThatNotExistInTheTable(DataTable table
+        , List<string> columnNames , List<string> notExistColumnNames)
+    {
+        // Arrange
+        var errorColumn = notExistColumnNames[0];
+        // Act
+        var action = () => InitialCheck.CheckHasColumnNames(table , columnNames);
+        // Assert
+        action.Should().Throw<ArgumentException>().WithMessage(
+            InitialCheck.NotExistColumnError(errorColumn));
+    }
+
+    public static IEnumerable<object[]> ColumnsThatThrowArgumentException()
+    {
+        var firstTable = new DataTable();
+        firstTable.Columns.Add("ID");
+        firstTable.Columns.Add("Grade");
+        firstTable.Columns.Add("Email");
+        var firstColumns = new List<string>()
+        {
+            "ID",
+            "Address",
+            "Number"
+        };
+        var firstNotExistColumns = new List<string>()
+        {
+            "Address",
+            "Number"
+        };
+        yield return [firstTable, firstColumns, firstNotExistColumns];
+        
+        var secondTable = new DataTable();
+        var secondColumns = new List<string>()
+        {
+            "ID"
+        };
+        var secondNotExistColumns = new List<string>()
+        {
+            "ID"
+        };
+        yield return [secondTable, secondColumns, secondNotExistColumns];
+    }
+    
+    [Theory]
+    [MemberData(nameof(ColumnsThatNotThrowArgumentException))]
+    public void CheckHasColumnNames_ShouldNotThrowArgumentException_WhenAllColumnsExistInTheTable(DataTable table
+        , List<string> columnNames)
+    {
+        // Arrange
+        
+        // Act
+        var action = () => InitialCheck.CheckHasColumnNames(table , columnNames);
+        // Assert
+        action.Should().NotThrow<ArgumentException>();
+    }
+    public static IEnumerable<object[]> ColumnsThatNotThrowArgumentException()
+    {
+        var firstTable = new DataTable();
+        var firstColumns = new List<string>()
+        {
+            "ID",
+            "Address",
+            "Number"
+        };
+        firstColumns.ForEach(column => firstTable.Columns.Add(column));
+        
+        yield return [firstTable, firstColumns];
+        
+        var secondTable = new DataTable();
+        var secondColumns = new List<string>();
+        
+        yield return [secondTable, secondColumns];
     }
 }
