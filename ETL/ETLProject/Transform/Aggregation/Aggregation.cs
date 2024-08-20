@@ -62,7 +62,7 @@ public class Aggregation(AggregationDto dto)
     private void InitializeAggregationParameters(DataTable table)
     {
         _table = table;
-        _groupedBys = ConvertStringToObject.GetGroupedBysColumn(_table, dto.GroupedBysColumnNames);
+        _groupedBys = ConvertStringToObject.GetGroupedBysColumn(_table, dto.GroupedByColumnNames);
         _aggregated = ConvertStringToObject.GetAggregatedColumn(_table, dto.AggregatedColumnName);
         _strategy = ConvertStringToObject.GetAggregateStrategy(dto.StrategyType);
     }
