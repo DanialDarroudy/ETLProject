@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using ETLProject.Extract;
 using ETLProject.Extract.DataConverterAdaptor;
+using ETLProject.Transform;
 
 namespace ETLProject.Controllers;
 
@@ -8,6 +9,7 @@ public static class DataConversionManager
 {
     public static List<IDataConverter> CreateConvertersFromSources(List<Tuple<string , string>> sources)
     {
+        InitialCheck.CheckEmpty(sources);
         return sources.Select(tuple =>
             DataConverterFactory.CreateConverter(tuple.Item1)).ToList();
     }

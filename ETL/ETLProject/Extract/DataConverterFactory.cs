@@ -14,6 +14,11 @@ public static class DataConverterFactory
         {
             return new SqlDataConverter();
         }
-        throw new ArgumentException("Invalid converter type");
+        throw new ArgumentException(NotExistTypeError(type));
+    }
+
+    public static string NotExistTypeError(string type)
+    {
+        return $"converter type {type} is Invalid";
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ETLProjectTest.Extract.DataConverterAdaptor;
 
-public class SqlDataConverterTest
+public class CsvDataConverterTest
 {
     
 }

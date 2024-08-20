@@ -14,6 +14,12 @@ public static class InitialCheck
     {
         return $"Column '{columnName}' does not exist in the DataTable.";
     }
+
+    public static string EmptyListError(Type type)
+    {
+        return $"The input List Of {type} cannot be empty.";
+    }
+    
     public static void CheckNull(DataTable table)
     {
         if (table == null)
@@ -27,6 +33,14 @@ public static class InitialCheck
         if (table.Rows.Count == 0)
         {
             throw new ArgumentException(EmptyTableError);
+        }
+    }
+
+    public static void CheckEmpty<T>(List<T> target)
+    {
+        if (target.Count == 0)
+        {
+            throw new ArgumentException(EmptyListError(typeof(T)));
         }
     }
 
