@@ -75,7 +75,7 @@ public class DataConversionManagerTest
     //     var action = () => DataConversionManager.CreateConvertersFromSources(sources);
     //     // Assert
     //     action.Should().Throw<ArgumentException>().WithMessage(
-    //         InitialCheck.EmptyListError(typeof(Tuple<string, string>)));
+    //         EnsureCheck.EmptyListError(typeof(Tuple<string, string>)));
     // }
 
     // [Theory]

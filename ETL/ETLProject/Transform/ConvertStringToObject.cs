@@ -12,18 +12,18 @@ public static class ConvertStringToObject
 {
     public static DataTable GetDataTable(List<DataTable> dataTables,string tableName)
     {
-        InitialCheck.CheckHasTableName(dataTables, tableName);
+        EnsureCheck.CheckHasTableName(dataTables, tableName);
         return dataTables.Find(table => table.TableName == tableName)!;
     }
     public static List<DataColumn> GetGroupedBysColumn(DataTable table , List<string> groupedBysColumnNames)
     {
-        InitialCheck.CheckHasColumnNames(table, groupedBysColumnNames);
+        EnsureCheck.CheckHasColumnNames(table, groupedBysColumnNames);
         return groupedBysColumnNames.Select(name => table.Columns[name]!).ToList();
     }
 
     public static DataColumn GetAggregatedColumn(DataTable table , string aggregatedColumnName)
     {
-        InitialCheck.CheckHasColumnNames(table, [aggregatedColumnName]);
+        EnsureCheck.CheckHasColumnNames(table, [aggregatedColumnName]);
         return table.Columns[aggregatedColumnName]!;
     }
 

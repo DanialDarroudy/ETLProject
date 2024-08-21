@@ -10,8 +10,8 @@ public class LeafCondition(string condition) : IComponentCondition
     public List<DataRow> PerformFilter(DataTable table)
     {
         var strategy = ConvertStringToObject.GetComparisonStrategy(condition);
-        InitialCheck.CheckNull(table);
-        InitialCheck.CheckEmpty(table);
+        EnsureCheck.CheckNull(table);
+        EnsureCheck.CheckEmpty(table);
         var columnName = SplitCondition.GetColumnName(condition);
         var value = SplitCondition.GetValue(condition);
         

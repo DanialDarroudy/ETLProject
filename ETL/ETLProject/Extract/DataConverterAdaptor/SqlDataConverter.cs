@@ -5,42 +5,49 @@ namespace ETLProject.Extract.DataConverterAdaptor;
 
 public class SqlDataConverter : IDataConverter
 {
-    private const string QueryForGetAllTableName = 
-        "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'";
-
     public List<DataTable> ConvertToDataTables(string source)
     {
-        var connection = ConvertSourceToConnectionString(source);
-        var npgsql = new NpgsqlConnection(connection);
-        npgsql.Open();
-        var command = new NpgsqlCommand(QueryForGetAllTableName, npgsql);
-        var reader = command.ExecuteReader();
+        var connectionString = ConvertSourceToConnectionString(source);
         var tables = new List<DataTable>();
-        while (reader.Read())
+        using (var npgsql = new NpgsqlConnection(connectionString))
         {
-            var tableName = reader.GetString(0);
-            tables.Add(GetDataTable(npgsql, tableName));
+            npgsql.Open();
+            using (var command = new NpgsqlCommand(
+                       "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"
+                       , npgsql))
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var tableName = reader.GetString(0);
+                    tables.Add(GetDataTable(connectionString, tableName));
+                }
+            }
         }
 
         return tables;
     }
 
-    private DataTable GetDataTable(NpgsqlConnection npgsql, string tableName)
+    private DataTable GetDataTable(string connectionString, string tableName)
     {
         var dataTable = new DataTable();
-        var query = $"SELECT * FROM {tableName}";
-        var command = new NpgsqlCommand(query, npgsql);
-        var adapter = new NpgsqlDataAdapter(command);
-        adapter.Fill(dataTable);
-        dataTable.TableName = tableName;
+        using (var npgsql = new NpgsqlConnection(connectionString))
+        {
+            npgsql.Open();
+            using (var command = new NpgsqlCommand($"SELECT * FROM \"{tableName}\"", npgsql))
+            using (var adapter = new NpgsqlDataAdapter(command))
+            {
+                adapter.Fill(dataTable);
+                dataTable.TableName = tableName;
+            }
+        }
+
         return dataTable;
     }
+
     private string ConvertSourceToConnectionString(string source)
     {
-        var server = source.Split(' ')[0];
-        var username = source.Split(' ')[1];
-        var password = source.Split(' ')[2];
-        var database = source.Split(' ')[3];
-        return $"Host={server};Username={username};Password={password};Database={database}";
+        var parts = source.Split('.');
+        return $"Host={parts[0]};Username={parts[1]};Password={parts[2]};Database={parts[3]}";
     }
 }

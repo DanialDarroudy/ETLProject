@@ -9,7 +9,7 @@ public static class DataConversionManager
 {
     public static List<IDataConverter> CreateConvertersFromSources(List<string> sources)
     {
-        InitialCheck.CheckEmpty(sources);
+        EnsureCheck.CheckEmpty(sources);
         return sources.Select(str =>
             DataConverterFactory.CreateConverter(str[^3..])).ToList(); 
     }

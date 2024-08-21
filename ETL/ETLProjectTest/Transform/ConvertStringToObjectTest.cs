@@ -55,7 +55,7 @@ public class ConvertStringToObjectTest
         var action = () => ConvertStringToObject.GetDataTable(dataTables, tableName);
         // Assert
         action.Should().Throw<ArgumentException>().WithMessage(
-            InitialCheck.NotExistTableError(tableName));
+            EnsureCheck.NotExistTableError(tableName));
     }
 
     public static IEnumerable<object[]> TablesThatThrowArgumentException()
@@ -133,7 +133,7 @@ public class ConvertStringToObjectTest
         var action = () => ConvertStringToObject.GetGroupedBysColumn(table, groupedBysColumnNames);
         // Assert
         action.Should().Throw<ArgumentException>().WithMessage(
-            InitialCheck.NotExistColumnError(errorColumn));
+            EnsureCheck.NotExistColumnError(errorColumn));
     }
 
     public static IEnumerable<object[]> ColumnNamesThatThrowArgumentException()
@@ -206,7 +206,7 @@ public class ConvertStringToObjectTest
         var action = () => ConvertStringToObject.GetAggregatedColumn(table, aggregatedColumnName);
         // Assert
         action.Should().Throw<ArgumentException>().WithMessage(
-            InitialCheck.NotExistColumnError(aggregatedColumnName));
+            EnsureCheck.NotExistColumnError(aggregatedColumnName));
     }
     public static IEnumerable<object[]> ColumnNameThatThrowArgumentException()
     {

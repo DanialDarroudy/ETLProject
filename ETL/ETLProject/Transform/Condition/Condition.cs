@@ -7,6 +7,13 @@ public class Condition(IComponentCondition root)
 {
     public DataTable ApplyCondition(DataTable table)
     {
-        return root.PerformFilter(table).CopyToDataTable();
+        try
+        {
+            return root.PerformFilter(table).CopyToDataTable();
+        }
+        catch (Exception e)
+        {
+            return new DataTable(table.TableName);
+        }
     }
 }

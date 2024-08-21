@@ -4,7 +4,7 @@ using FluentAssertions;
 
 namespace ETLProjectTest.Transform;
 
-public class InitialCheckTest
+public class EnsureCheckTest
 {
     [Fact]
     public void NotExistTableError_ShouldReturnStringError_WhenCalled()
@@ -13,7 +13,7 @@ public class InitialCheckTest
         const string tableName = "Student";
         const string expected = $"Table {tableName} not found";
         // Act
-        var actual = InitialCheck.NotExistTableError(tableName);
+        var actual = EnsureCheck.NotExistTableError(tableName);
         // Assert
         actual.Should().Be(expected);
     }
@@ -24,7 +24,7 @@ public class InitialCheckTest
         const string columnName = "ID";
         const string expected = $"Column '{columnName}' does not exist in the DataTable.";
         // Act
-        var actual = InitialCheck.NotExistColumnError(columnName);
+        var actual = EnsureCheck.NotExistColumnError(columnName);
         // Assert
         actual.Should().Be(expected);
     }
@@ -34,9 +34,9 @@ public class InitialCheckTest
         // Arrange
         DataTable table = null!;
         // Act
-        var action = () => InitialCheck.CheckNull(table);
+        var action = () => EnsureCheck.CheckNull(table);
         // Assert
-        action.Should().Throw<ArgumentException>().WithMessage(InitialCheck.NullTableError);
+        action.Should().Throw<ArgumentException>().WithMessage(EnsureCheck.NullTableError);
     }
     [Fact]
     public void CheckNull_ShouldNotThrowArgumentException_WhenParameterInitialized()
@@ -44,7 +44,7 @@ public class InitialCheckTest
         // Arrange
         var table = new DataTable();
         // Act
-        var action = () => InitialCheck.CheckNull(table);
+        var action = () => EnsureCheck.CheckNull(table);
         // Assert
         action.Should().NotThrow<ArgumentException>();
     }
@@ -55,9 +55,9 @@ public class InitialCheckTest
         // Arrange
         var table = new DataTable();
         // Act
-        var action = () => InitialCheck.CheckEmpty(table);
+        var action = () => EnsureCheck.CheckEmpty(table);
         // Assert
-        action.Should().Throw<ArgumentException>().WithMessage(InitialCheck.EmptyTableError);
+        action.Should().Throw<ArgumentException>().WithMessage(EnsureCheck.EmptyTableError);
     }
     [Fact]
     public void CheckEmpty_ShouldNotThrowArgumentException_WhenParameterHasRows()
@@ -66,7 +66,7 @@ public class InitialCheckTest
         var table = new DataTable();
         table.Rows.Add(table.NewRow());
         // Act
-        var action = () => InitialCheck.CheckEmpty(table);
+        var action = () => EnsureCheck.CheckEmpty(table);
         // Assert
         action.Should().NotThrow<ArgumentException>();
     }
@@ -79,10 +79,10 @@ public class InitialCheckTest
         // Arrange
         
         // Act
-        var action = () => InitialCheck.CheckHasTableName(dataTables , tableName);
+        var action = () => EnsureCheck.CheckHasTableName(dataTables , tableName);
         // Assert
         action.Should().Throw<ArgumentException>().WithMessage(
-            InitialCheck.NotExistTableError(tableName));
+            EnsureCheck.NotExistTableError(tableName));
     }
 
     public static IEnumerable<object[]> TablesThatThrowArgumentException()
@@ -108,7 +108,7 @@ public class InitialCheckTest
         // Arrange
         
         // Act
-        var action = () => InitialCheck.CheckHasTableName(dataTables , tableName);
+        var action = () => EnsureCheck.CheckHasTableName(dataTables , tableName);
         // Assert
         action.Should().NotThrow<ArgumentException>();
     }
@@ -138,10 +138,10 @@ public class InitialCheckTest
         // Arrange
         var errorColumn = notExistColumnNames[0];
         // Act
-        var action = () => InitialCheck.CheckHasColumnNames(table , columnNames);
+        var action = () => EnsureCheck.CheckHasColumnNames(table , columnNames);
         // Assert
         action.Should().Throw<ArgumentException>().WithMessage(
-            InitialCheck.NotExistColumnError(errorColumn));
+            EnsureCheck.NotExistColumnError(errorColumn));
     }
 
     public static IEnumerable<object[]> ColumnsThatThrowArgumentException()
@@ -183,7 +183,7 @@ public class InitialCheckTest
         // Arrange
         
         // Act
-        var action = () => InitialCheck.CheckHasColumnNames(table , columnNames);
+        var action = () => EnsureCheck.CheckHasColumnNames(table , columnNames);
         // Assert
         action.Should().NotThrow<ArgumentException>();
     }

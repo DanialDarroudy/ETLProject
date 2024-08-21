@@ -13,7 +13,7 @@ public class ComponentConditionConverter : JsonConverter<IComponentCondition>
         JsonSerializerOptions options)
     {
         var root = JsonDocument.ParseValue(ref reader).RootElement;
-        var type = InitialCheck.EnsurePropertyExist(root, "Type").GetString()!;
+        var type = EnsureCheck.EnsurePropertyExist(root, "Type").GetString()!;
         switch (type)
         {
             case "CompositeCondition":
@@ -28,7 +28,7 @@ public class ComponentConditionConverter : JsonConverter<IComponentCondition>
                 return new LeafCondition(condition);
             }
             default:
-                throw new ArgumentException(InitialCheck.NotExistProperty(type));
+                throw new ArgumentException(EnsureCheck.NotExistProperty(type));
         }
     }
 

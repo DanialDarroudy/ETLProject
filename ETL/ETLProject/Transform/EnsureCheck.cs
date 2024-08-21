@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace ETLProject.Transform;
 
-public static class InitialCheck
+public static class EnsureCheck
 {
     public const string NullTableError = "The input DataTable cannot be null.";
     public const string EmptyTableError = "The input DataTable cannot be empty.";

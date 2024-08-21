@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using ETLProject.Controllers;
 using ETLProject.Controllers.Deserialization;
 using ETLProject.Transform.Aggregation.AggregateStrategy;
 
@@ -15,8 +14,8 @@ public class Aggregation(AggregationDto dto)
     public DataTable Aggregate(DataTable table)
     {
         InitializeAggregationParameters(table);
-        InitialCheck.CheckNull(_table);
-        InitialCheck.CheckEmpty(_table);
+        EnsureCheck.CheckNull(_table);
+        EnsureCheck.CheckEmpty(_table);
         
         return GenerateAggregatedTable();
     }
