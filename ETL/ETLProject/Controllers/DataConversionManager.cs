@@ -7,16 +7,17 @@ namespace ETLProject.Controllers;
 
 public static class DataConversionManager
 {
-    public static List<IDataConverter> CreateConvertersFromSources(List<Tuple<string , string>> sources)
+    public static List<IDataConverter> CreateConvertersFromSources(List<string> sources)
     {
         InitialCheck.CheckEmpty(sources);
-        return sources.Select(tuple =>
-            DataConverterFactory.CreateConverter(tuple.Item1)).ToList();
+        return sources.Select(str =>
+            DataConverterFactory.CreateConverter(str[^3..])).ToList(); 
     }
 
-    public static List<DataTable> AddConvertedTablesToList(List<IDataConverter> converters , List<Tuple<string , string>> sources)
+    public static List<DataTable> AddConvertedTablesToList(List<IDataConverter> converters
+        , List<string> sources)
     {
-        return converters.Select((converter, index) => converter.ConvertToDataTables(sources[index].Item2))
+        return converters.Select((converter, index) => converter.ConvertToDataTables(sources[index]))
             .SelectMany(tables => tables).ToList();
     }
 }

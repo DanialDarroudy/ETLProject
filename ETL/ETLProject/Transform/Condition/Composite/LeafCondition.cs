@@ -1,7 +1,10 @@
 ﻿using System.Data;
+using ETLProject.Controllers.Deserialization;
+using Newtonsoft.Json;
 
 namespace ETLProject.Transform.Condition.Composite;
 
+[JsonConverter(typeof(ComponentConditionConverter))]
 public class LeafCondition(string condition) : IComponentCondition
 {
     public List<DataRow> PerformFilter(DataTable table)

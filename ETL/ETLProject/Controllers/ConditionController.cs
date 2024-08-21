@@ -1,22 +1,23 @@
-﻿using ETLProject.Transform;
+﻿using ETLProject.Controllers.Deserialization;
+using ETLProject.Transform;
 using ETLProject.Transform.Condition;
-using ETLProject.Transform.Condition.Composite;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace ETLProject.Controllers;
 
+[Route("[controller]/[action]")]
 public class ConditionController : Controller
 {
     [HttpPost]
-    public IActionResult Condition([FromBody] List<Tuple<string, string>> sources, [FromBody] IComponentCondition root ,
-        string tableName)
+    public IActionResult ApplyCondition([FromBody] ConditionDTO dto)
     {
-        var converters = DataConversionManager.CreateConvertersFromSources(sources);
+        var converters = DataConversionManager.CreateConvertersFromSources(dto.Sources);
         
-        var allTables = DataConversionManager.AddConvertedTablesToList(converters , sources);
+        var allTables = DataConversionManager.AddConvertedTablesToList(converters , dto.Sources);
         
-        var resultTable = new Condition(root).ApplyCondition(ConvertStringToObject.GetDataTable(allTables , tableName));
+        var resultTable = new Condition(dto.Root).ApplyCondition(
+            ConvertStringToObject.GetDataTable(allTables , dto.TableName));
         
         return Ok(JsonConvert.SerializeObject(resultTable));
     }

@@ -14,6 +14,7 @@ public class CsvDataConverter : IDataConverter
         var csvReader = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture));
         var dataReader = new CsvDataReader(csvReader);
         dataTable.Load(dataReader);
+        dataTable.TableName = source.Remove(source.Length - 4);
         return [dataTable];
     }
 }

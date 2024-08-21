@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Text.Json;
 
 namespace ETLProject.Transform;
 
@@ -19,7 +20,11 @@ public static class InitialCheck
     {
         return $"The input List Of {type} cannot be empty.";
     }
-    
+
+    public static string NotExistProperty(string propertyName)
+    {
+        return $"Unknown type or missing property: {propertyName}";
+    }
     public static void CheckNull(DataTable table)
     {
         if (table == null)
@@ -42,6 +47,14 @@ public static class InitialCheck
         {
             throw new ArgumentException(EmptyListError(typeof(T)));
         }
+    }
+    
+    public static JsonElement EnsurePropertyExist(JsonElement root , string propertyName)
+    {
+        if (!root.TryGetProperty(propertyName, out var typeProperty))
+            throw new JsonException(NotExistProperty(propertyName));
+        
+        return typeProperty;
     }
 
     public static void CheckHasTableName(List<DataTable> dataTables, string tableName)
