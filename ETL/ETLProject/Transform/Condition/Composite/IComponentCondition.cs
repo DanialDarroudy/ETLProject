@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using ETLProject.Controllers.Deserialization;
+using ETLProject.Deserialization;
 using Newtonsoft.Json;
 
 namespace ETLProject.Transform.Condition.Composite;

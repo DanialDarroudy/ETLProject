@@ -1,6 +1,5 @@
-﻿using ETLProject.Controllers.Deserialization;
-using ETLProject.Transform;
-using ETLProject.Transform.Condition;
+﻿using ETLProject.Deserialization;
+using ETLProject.Transform.Condition.MainCondition;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -12,9 +11,10 @@ public class ConditionController : Controller
     [HttpPost]
     public IActionResult ApplyCondition([FromBody] ConditionDTO dto)
     {
-        var converters = DataConversionManager.CreateConvertersFromSources(dto.Sources);
-        
-        var allTables = DataConversionManager.AddConvertedTablesToList(converters , dto.Sources);
+        var manager = new DataConversionManager();
+        var converters = manager.CreateConvertersFromSources(dto.Sources);
+
+        var allTables = manager.AddConvertedTablesToList(converters, dto.Sources);
         
         var resultTable = new Condition(dto.Root).ApplyCondition(
             ConvertStringToObject.GetDataTable(allTables , dto.TableName));

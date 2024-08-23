@@ -5,16 +5,16 @@ using ETLProject.Transform;
 
 namespace ETLProject.Controllers;
 
-public static class DataConversionManager
+public class DataConversionManager
 {
-    public static List<IDataConverter> CreateConvertersFromSources(List<string> sources)
+    public List<IDataConverter> CreateConvertersFromSources(List<string> sources)
     {
-        EnsureCheck.CheckEmpty(sources);
+        ObjectCheck.CheckEmpty(sources);
         return sources.Select(str =>
             DataConverterFactory.CreateConverter(str[^3..])).ToList(); 
     }
 
-    public static List<DataTable> AddConvertedTablesToList(List<IDataConverter> converters
+    public List<DataTable> AddConvertedTablesToList(List<IDataConverter> converters
         , List<string> sources)
     {
         return converters.Select((converter, index) => converter.ConvertToDataTables(sources[index]))

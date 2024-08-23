@@ -1,5 +1,6 @@
 ﻿using System.Data;
-using ETLProject.Controllers.Deserialization;
+using ETLProject.Deserialization;
+using ETLProject.Transform.Condition.MainCondition;
 using Newtonsoft.Json;
 
 namespace ETLProject.Transform.Condition.Composite;
@@ -10,8 +11,8 @@ public class LeafCondition(string condition) : IComponentCondition
     public List<DataRow> PerformFilter(DataTable table)
     {
         var strategy = ConvertStringToObject.GetComparisonStrategy(condition);
-        EnsureCheck.CheckNull(table);
-        EnsureCheck.CheckEmpty(table);
+        ObjectCheck.CheckNull(table);
+        ObjectCheck.CheckEmpty(table);
         var columnName = SplitCondition.GetColumnName(condition);
         var value = SplitCondition.GetValue(condition);
         

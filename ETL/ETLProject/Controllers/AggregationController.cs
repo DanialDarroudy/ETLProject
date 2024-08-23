@@ -1,6 +1,5 @@
-﻿using ETLProject.Controllers.Deserialization;
-using ETLProject.Transform;
-using ETLProject.Transform.Aggregation;
+﻿using ETLProject.Deserialization;
+using ETLProject.Transform.Aggregation.MainAggregation;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -13,12 +12,13 @@ public class AggregationController : Controller
     [HttpPost]
     public IActionResult Aggregate([FromBody] AggregationDto dto)
     {
-        var converters = DataConversionManager.CreateConvertersFromSources(dto.Sources);
+        var manager = new DataConversionManager();
+        var converters = manager.CreateConvertersFromSources(dto.Sources);
 
-        var allTables = DataConversionManager.AddConvertedTablesToList(converters, dto.Sources);
+        var allTables = manager.AddConvertedTablesToList(converters, dto.Sources);
 
 
-        var resultTable = new Aggregation(dto).Aggregate(ConvertStringToObject.GetDataTable(allTables, dto.TableName));
+        var resultTable = new AggregationParametersInitializer().InitializeAggregation(allTables , dto).Aggregate();
         return Ok(JsonConvert.SerializeObject(resultTable));
     }
 }
