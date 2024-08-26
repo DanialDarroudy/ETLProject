@@ -9,12 +9,12 @@ namespace ETLProject.Controllers;
 public class ConditionController : Controller
 {
     [HttpPost]
-    public IActionResult ApplyCondition([FromBody] ConditionDTO dto)
+    public IActionResult ApplyCondition([FromBody] ConditionDto dto)
     {
         var manager = new DataConversionManager();
         var converters = manager.CreateConvertersFromSources(dto.Sources);
-
-        var allTables = manager.AddConvertedTablesToList(converters, dto.Sources);
+        
+        var allTables = manager.AddConvertedTablesToList(converters , dto.Sources);
         
         var resultTable = new Condition(dto.Root).ApplyCondition(
             ConvertStringToObject.GetDataTable(allTables , dto.TableName));

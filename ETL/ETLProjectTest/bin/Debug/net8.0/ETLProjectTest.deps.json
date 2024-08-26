@@ -708,10 +708,7 @@
           "Npgsql": "8.0.3"
         },
         "runtime": {
-          "ETLProject.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "ETLProject.dll": {}
         }
       }
     }

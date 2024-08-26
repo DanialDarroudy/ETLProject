@@ -6,7 +6,8 @@ namespace ETLProjectTest.Extract.DataConverterAdaptor;
 
 public class SqlDataConverterTest
 {
-    // TODO For Morning
+    [Theory]
+    [MemberData(nameof(ProvideSourceAndTables))]
     public void ConvertToDataTables_ShouldReturnTables_WhenParameterIsAddressOfPostgreSqlDataBase(
         List<DataTable> expected, string source)
     {
@@ -25,17 +26,16 @@ public class SqlDataConverterTest
 
     public static IEnumerable<object[]> ProvideSourceAndTables()
     {
-        // TODO For Morning
-        const string source = "";
+        const string source = "localhost.postgres.!@#123qwe.DIA.sql";
         var table = new DataTable("Products");
         table.Columns.Add("Name", typeof(string));
-        table.Columns.Add("Price", typeof(string));
+        table.Columns.Add("Price", typeof(int));
         table.Columns.Add("Supplier", typeof(string));
-        table.Rows.Add();
-        table.Rows.Add();
-        table.Rows.Add();
-        table.Rows.Add();
-        table.Rows.Add();
+        table.Rows.Add("iPhone11" , 800 , "Apple");
+        table.Rows.Add("iPhone12" , 900 , "Apple");
+        table.Rows.Add("A35" , 500 , "Samsung");
+        table.Rows.Add("A25" , 400 , "Samsung");
+        table.Rows.Add("POCOX6" , 300 , "Xiaomi");
         yield return [new List<DataTable>(){table}, source];
     }
 }

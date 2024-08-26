@@ -1,38 +1,13 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ADataRow_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F28776febd6894b88812ea7cd077647852ba8a0_003F93_003F3f1d245c_003FDataRow_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AJsonElement_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F5148e388a7db4994ad2ab3750386454116e910_003Fb4_003F16843434_003FJsonElement_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=03510c77_002Dd344_002D429f_002D9631_002D53424153d2ea/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="InitializeAggregation_ShouldReturnInitializedAggregated_WhenDtoInParameters" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="C:\Users\NegaRe\RiderProjects\ETLProject\ETL\ETLProjectTest" Presentation="&amp;lt;ETLProjectTest&amp;gt;" /&gt;&#xD;
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\d.darroudi\AppData\Local\JetBrains\Rider2024.1\resharper-host\temp\Rider\vAny\CoverageData\_ETL.1806038481\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2a380a1c_002D0c10_002D4bc9_002Dace6_002D0cb0bf82c2b9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;ETLProjectTest&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProjectTest" Presentation="&amp;lt;ETLProjectTest&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=35cbed80_002D655a_002D4555_002D90c2_002D8240e1737d3b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;ETLProjectTest&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="C:\Users\NegaRe\RiderProjects\ETLProject\ETL\ETLProjectTest" Presentation="&amp;lt;ETLProjectTest&amp;gt;" /&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e949e0d0_002Dad2f_002D44b9_002D8c17_002Dd9949413d82d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ConditionTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Condition.MainCondition.ConditionTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Condition.Composite.LeafConditionTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Condition.Composite.CompositeConditionTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Condition.ComparisonStrategy.MoreThanStrategyTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Condition.ComparisonStrategy.LessThanStrategyTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Condition.ComparisonStrategy.EqualStrategyTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Aggregation.AggregateStrategyFactoryTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Aggregation.MainAggregation.TableInitializerTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Aggregation.MainAggregation.AggregationTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Aggregation.MainAggregation.AggregationProcessorTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Aggregation.MainAggregation.AggregationParametersInitializerTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Aggregation.AggregateStrategy.SumStrategyTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Aggregation.AggregateStrategy.MinStrategyTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Aggregation.AggregateStrategy.MaxStrategyTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Aggregation.AggregateStrategy.CountStrategyTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Transform.Aggregation.AggregateStrategy.AverageStrategyTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Extract.DataConverterFactoryTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Extract.DataConverterAdaptor.CsvDataConverterTest.ConvertToDataTables_ShouldReturnTableInList_WhenParameterIsPathOfCsvFile&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Extract.DataConverterAdaptor.CsvDataConverterTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Deserialization.ConvertStringToObjectTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Deserialization.ComponentConditionConverterTest&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::2D9E0AF8-DA19-493F-AE9C-2E6D75ECD19A::net8.0::ETLProjectTest.Controllers.DataConversionManagerTest&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
+	
+	
+	
 	
 	
 	

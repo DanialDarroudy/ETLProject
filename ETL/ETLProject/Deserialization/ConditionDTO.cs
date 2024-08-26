@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace ETLProject.Deserialization;
 
-public class ConditionDTO
+public class ConditionDto
 {
     public List<string> Sources { get; set; } = null!;
     [JsonConverter(typeof(ComponentConditionConverter))]

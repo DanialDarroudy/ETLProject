@@ -6,15 +6,21 @@ using Newtonsoft.Json;
 namespace ETLProject.Transform.Condition.Composite;
 
 [JsonConverter(typeof(ComponentConditionConverter))]
-public class LeafCondition(string condition) : IComponentCondition
+public class LeafCondition : IComponentCondition
 {
+    private readonly string _condition;
+
+    public LeafCondition(string condition)
+    {
+        _condition = condition;
+    }
     public List<DataRow> PerformFilter(DataTable table)
     {
-        var strategy = ConvertStringToObject.GetComparisonStrategy(condition);
+        var strategy = ConvertStringToObject.GetComparisonStrategy(_condition);
         ObjectCheck.CheckNull(table);
         ObjectCheck.CheckEmpty(table);
-        var columnName = SplitCondition.GetColumnName(condition);
-        var value = SplitCondition.GetValue(condition);
+        var columnName = SplitCondition.GetColumnName(_condition);
+        var value = SplitCondition.GetValue(_condition);
         
         return table.AsEnumerable().Where(row => strategy.Compare(row[columnName], value)).ToList();
     }

@@ -267,3 +267,6 @@ C:\Users\NegaRe\RiderProjects\ETLProject\ETL\ETLProjectTest\obj\Debug\net8.0\ref
 C:\Users\NegaRe\RiderProjects\ETLProject\ETL\ETLProjectTest\obj\Debug\net8.0\ETLProjectTest.pdb
 C:\Users\NegaRe\RiderProjects\ETLProject\ETL\ETLProjectTest\obj\Debug\net8.0\ETLProjectTest.genruntimeconfig.cache
 C:\Users\NegaRe\RiderProjects\ETLProject\ETL\ETLProjectTest\obj\Debug\net8.0\ref\ETLProjectTest.dll
+C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProjectTest\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProjectTest\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\d.darroudi\RiderProjects\ETLProject\ETL\ETLProjectTest\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

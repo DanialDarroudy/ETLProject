@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NegaRe\\RiderProjects\\ETLProject\\ETL\\ETLProjectTest\\ETLProjectTest.csproj": {}
+    "C:\\Users\\d.darroudi\\RiderProjects\\ETLProject\\ETL\\ETLProjectTest\\ETLProjectTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NegaRe\\RiderProjects\\ETLProject\\ETL\\ETLProjectTest\\ETLProjectTest.csproj": {
+    "C:\\Users\\d.darroudi\\RiderProjects\\ETLProject\\ETL\\ETLProjectTest\\ETLProjectTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NegaRe\\RiderProjects\\ETLProject\\ETL\\ETLProjectTest\\ETLProjectTest.csproj",
+        "projectUniqueName": "C:\\Users\\d.darroudi\\RiderProjects\\ETLProject\\ETL\\ETLProjectTest\\ETLProjectTest.csproj",
         "projectName": "ETLProjectTest",
-        "projectPath": "C:\\Users\\NegaRe\\RiderProjects\\ETLProject\\ETL\\ETLProjectTest\\ETLProjectTest.csproj",
-        "packagesPath": "C:\\Users\\NegaRe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NegaRe\\RiderProjects\\ETLProject\\ETL\\ETLProjectTest\\obj\\",
+        "projectPath": "C:\\Users\\d.darroudi\\RiderProjects\\ETLProject\\ETL\\ETLProjectTest\\ETLProjectTest.csproj",
+        "packagesPath": "C:\\Users\\d.darroudi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\d.darroudi\\RiderProjects\\ETLProject\\ETL\\ETLProjectTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\NegaRe\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\d.darroudi\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\NegaRe\\RiderProjects\\ETLProject\\ETL\\ETLProject\\ETLProject.csproj": {
-                "projectPath": "C:\\Users\\NegaRe\\RiderProjects\\ETLProject\\ETL\\ETLProject\\ETLProject.csproj"
+              "C:\\Users\\d.darroudi\\RiderProjects\\ETLProject\\ETL\\ETLProject\\ETLProject.csproj": {
+                "projectPath": "C:\\Users\\d.darroudi\\RiderProjects\\ETLProject\\ETL\\ETLProject\\ETLProject.csproj"
               }
             }
           }
@@ -36,11 +36,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -88,21 +83,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\NegaRe\\RiderProjects\\ETLProject\\ETL\\ETLProject\\ETLProject.csproj": {
+    "C:\\Users\\d.darroudi\\RiderProjects\\ETLProject\\ETL\\ETLProject\\ETLProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NegaRe\\RiderProjects\\ETLProject\\ETL\\ETLProject\\ETLProject.csproj",
+        "projectUniqueName": "C:\\Users\\d.darroudi\\RiderProjects\\ETLProject\\ETL\\ETLProject\\ETLProject.csproj",
         "projectName": "ETLProject",
-        "projectPath": "C:\\Users\\NegaRe\\RiderProjects\\ETLProject\\ETL\\ETLProject\\ETLProject.csproj",
-        "packagesPath": "C:\\Users\\NegaRe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NegaRe\\RiderProjects\\ETLProject\\ETL\\ETLProject\\obj\\",
+        "projectPath": "C:\\Users\\d.darroudi\\RiderProjects\\ETLProject\\ETL\\ETLProject\\ETLProject.csproj",
+        "packagesPath": "C:\\Users\\d.darroudi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\d.darroudi\\RiderProjects\\ETLProject\\ETL\\ETLProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\NegaRe\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\d.darroudi\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -120,11 +115,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -171,7 +161,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
